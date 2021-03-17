@@ -86,8 +86,8 @@ router.post('/create-checkout-session', async (req, res) => {
     payment_method_types: ['card'],
     line_items: stripeItems,
     mode: 'payment',
-    success_url: 'https://thisisthebikeshop.herokuapp.com/success',
-    cancel_url: 'https://thisisthebikeshop.herokuapp.com/',
+    success_url: 'http://localhost:3000/success',
+    cancel_url: 'http://localhost:3000',
   });  
 
   res.json({ id: session.id });
