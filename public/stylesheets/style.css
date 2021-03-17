@@ -1,0 +1,45 @@
+body {
+  font-family: "Darker Grotesque", sans-serif;
+}
+
+a,
+a:hover {
+  color: white;
+}
+
+/* HOME PAGE */
+
+.jumbotron {
+  background-image: url("/images/bike-background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.price-button {
+  display: inline-block;
+}
+
+#shop-link {
+  color: rgb(102, 159, 251);
+}
+
+.basket-item {
+  background-color: #f8f8f8;
+}
+
+#total-basket {
+  background-color: white;
+}
+
+.basket-img {
+  width: 100px;
+}
+
+.button-checkout {
+  font-weight: bolder;
+}
