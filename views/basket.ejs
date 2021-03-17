@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Darker+Grotesque&display=swap" rel="stylesheet">
+  <title>BikeShop - Shop</title>
+  <script src="https://kit.fontawesome.com/a41e9403cf.js" crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <div class="row">
+      <!-- header -->
+      <nav class="navbar navbar-light bg-dark col-12">
+        <a class="navbar" href="/">
+          <img src="./images/bike-logo.svg" width="50" height="50" class="logo" alt="">
+          The Bike Shop Experience
+        </a>
+      </nav>
+    </div>
+
+    <div class="row">
+      <nav aria-label="breadcrumb" class="col-12 mt-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a id="shop-link" href="/">Shop</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Basket</li>
+        </ol>
+      </nav>
+    </div>
+
+    <h1>Basket</h1>
+
+    <!-- Basket table -->
+
+    <div class="row">
+      
+      <%
+      let totalCmd = 0;
+      if (dataCardBike.length < 1) {
+      %>
+        
+      <div class="col-12">
+        <h4 class="font-italic text-danger">No article in the basket.</h4>
+      </div>
+
+      <% } else { %> 
+
+      <table class="table col-12">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Model</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total</th>
+            <th scope="col">Suppr</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <%
+          for(let i = 0; i < dataCardBike.length; i++) {
+          %>
+
+          <tr class="basket-item">
+            <th scope="row"><%= i + 1 %></th>
+            <td><img class="basket-img" src="<%= dataCardBike[i].url %>" alt=""></td>
+            <td><%= dataCardBike[i].name %></td>
+            <td>
+              <form action="/update" method="POST">
+                <input type="number" value="<%= dataCardBike[i].quantity %>" name="quantity">
+                <input type="hidden" value="<%= [i] %>" name="position">
+                <button type="submit" class="btn btn-outline-info btn-sm fas fa-sync-alt"></button>
+              </form>
+            </td>
+            <td><%= `${dataCardBike[i].price}€` %></td>
+            <td><%= dataCardBike[i].price * dataCardBike[i].quantity + '€' %></td>
+            <td>
+              <a href="/delete?position=<%= [i] %>"><button class="btn btn-outline-info btn-sm fas fa-trash"></button></a>   
+            </td>
+          </tr>
+          <% totalCmd += dataCardBike[i].price * dataCardBike[i].quantity %>
+
+          <% } %>
+
+          <tr id="total-basket">
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="font-weight-bolder">Total basket:</td>
+            <td class="font-weight-bolder"><%= totalCmd + '€' %></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-right">
+        <button id="checkout-button" class="btn btn-outline-info btn-sm button-checkout">Checkout</button>
+      </div>
+    </div>
+    
+    <% } %>
+
+  </div>
+
+
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.jintegrity="
+    sha384-q8+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizcrossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="javascripts/script.js"></script>    
+</body>
+
+</html>
