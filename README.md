@@ -1,5 +1,6 @@
 # BikeShop
 A simple, responsive Express.js e-commerce app, with a basket feature and Stripe payment.
+See it in action: https://thisisthebikeshop.herokuapp.com/
 
 **Features**: 
 - Responsive user interface with Bootstrap
