@@ -2,6 +2,9 @@
 A simple, responsive Express.js e-commerce app, with a basket feature and Stripe payment.
 See it in action: https://thisisthebikeshop.herokuapp.com/
 
+_To use locally: 'npm start' within the root directory of the project_
+
+
 **Features**: 
 - Responsive user interface with Bootstrap
 - Basket with add, delete and modify quantity features
